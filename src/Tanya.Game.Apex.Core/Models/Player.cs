@@ -22,6 +22,7 @@ namespace Tanya.Game.Apex.Core.Models
         private readonly Access<byte> _teamNum;
         private readonly Access<Vector> _vecPunchWeaponAngle;
         private readonly Access<Vector> _viewAngle;
+        private readonly Access<float> _fYaw;
 
         #region Constructors
 
@@ -38,6 +39,7 @@ namespace Tanya.Game.Apex.Core.Models
             _teamNum = driver.Access(address + offsets.PlayerTeamNum, ByteType.Instance, 1000);
             _vecPunchWeaponAngle = driver.Access(address + offsets.PlayerVecPunchWeaponAngle, VectorType.Instance);
             _viewAngle = driver.Access(address + offsets.PlayerViewAngle, VectorType.Instance);
+            _fYaw = driver.Access(address + offsets.FYaw, FloatType.Instance);
         }
 
         #endregion
@@ -131,6 +133,10 @@ namespace Tanya.Game.Apex.Core.Models
         [JsonPropertyName("visible")]
         public bool Visible => _lastVisibleTime.Visible;
 
+        [JsonPropertyName("fYaw")]
+        public float FYaw => _fYaw.Get();
+        
+        
         #endregion
 
         #region Implementation of IUpdatable
@@ -148,6 +154,7 @@ namespace Tanya.Game.Apex.Core.Models
             _teamNum.Update(frameTime);
             _vecPunchWeaponAngle.Update(frameTime);
             _viewAngle.Update(frameTime);
+            _fYaw.Update(frameTime);
         }
 
         #endregion
