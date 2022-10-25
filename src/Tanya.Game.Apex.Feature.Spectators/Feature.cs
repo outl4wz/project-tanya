@@ -24,13 +24,12 @@ namespace Tanya.Game.Apex.Feature.Spectators
             if (!state.Players.TryGetValue(state.LocalPlayer, out var localPlayer)) return;
             foreach (var (_, player) in state.Players)
             {
-                // Console.WriteLine("FYAW {0}", Math.Abs(player.FYaw - localPlayer.FYaw));
-                if (Math.Abs(player.FYaw - localPlayer.FYaw) == 0 && player.LifeState == 0)
+                if (player.FYaw - localPlayer.FYaw == 0)
                     spectatorCount++;
             }
             
             // todo: need to find a better way to alert the user, maybe a Console.Beep()? 
-            Console.WriteLine("Spectators: {0}", spectatorCount);
+            Console.WriteLine("Spectators: {0}", spectatorCount - 1);
         }
         #endregion
     }
