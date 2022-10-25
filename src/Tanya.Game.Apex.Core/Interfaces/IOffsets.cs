@@ -23,6 +23,7 @@
         uint PlayerVecPunchWeaponAngle { get; }
         uint PlayerViewAngle { get; }
         uint FYaw { get;  }
+        uint GameMode { get; }
         #endregion
     }
 }

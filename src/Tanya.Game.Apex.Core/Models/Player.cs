@@ -23,6 +23,7 @@ namespace Tanya.Game.Apex.Core.Models
         private readonly Access<Vector> _vecPunchWeaponAngle;
         private readonly Access<Vector> _viewAngle;
         private readonly Access<float> _fYaw;
+        private readonly Access<ulong> _gameMode;
 
         #region Constructors
 
@@ -40,6 +41,7 @@ namespace Tanya.Game.Apex.Core.Models
             _vecPunchWeaponAngle = driver.Access(address + offsets.PlayerVecPunchWeaponAngle, VectorType.Instance);
             _viewAngle = driver.Access(address + offsets.PlayerViewAngle, VectorType.Instance);
             _fYaw = driver.Access(address + offsets.FYaw, FloatType.Instance);
+            _gameMode = driver.Access(address + offsets.GameMode, UInt64Type.Instance);
         }
 
         #endregion
@@ -48,6 +50,11 @@ namespace Tanya.Game.Apex.Core.Models
 
         public bool IsSameTeam(Player otherPlayer)
         {
+            //Console.WriteLine("GameMode: {0}", _gameMode.Get());
+            //Console.WriteLine("Comparation: {0}", _gameMode.Get() == Constants.ControlGameMode);
+            if (_gameMode.Get() == Constants.ControlGameMode)
+                return (otherPlayer.TeamNum & 1) == (TeamNum & 1);
+            
             return TeamNum == otherPlayer.TeamNum;
         }
 
