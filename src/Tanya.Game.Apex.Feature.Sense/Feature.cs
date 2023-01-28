@@ -1,5 +1,7 @@
 ﻿using Tanya.Game.Apex.Core;
 using Tanya.Game.Apex.Core.Interfaces;
+using Tanya.Game.Apex.Core.Models;
+using Tanya.Core.Models;
 
 namespace Tanya.Game.Apex.Feature.Sense
 {
@@ -28,10 +30,11 @@ namespace Tanya.Game.Apex.Feature.Sense
                     {
                         if (localPlayer.LocalOrigin.Distance(player.LocalOrigin) * Constants.UnitToMeter < _config.Distance)
                         {
-                            player.GlowEnable = (byte)(player.Visible ? 5 : 7);
-                            player.GlowThroughWalls = (byte)(player.Visible ? 1 : 2);
+                            player.GlowEnable = (byte)1;
+                            player.GlowThroughWalls = (byte)(player.Visible ? 2 : 2);
+                            player.GlowColor = (player.Visible? new Vector(10.0f, 0.0f, 0.0f) : new Vector(0.0f, 11.0f, 15.0f));
                         }
-                        else if (player.GlowEnable is 5 or 7)
+                        else if (player.GlowEnable is 1 or 7)
                         {
                             player.GlowEnable = 2;
                             player.GlowThroughWalls = 5;

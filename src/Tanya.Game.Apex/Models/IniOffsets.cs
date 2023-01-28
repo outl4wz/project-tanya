@@ -40,7 +40,7 @@ namespace Tanya.Game.Apex.Models
         public uint ButtonInZoom => _ini.Get("Buttons", "in_zoom");
         public uint CoreEntityList => _ini.Get("Miscellaneous", "cl_entitylist");
         public uint CoreLevelName => _ini.Get("Miscellaneous", "LevelName");
-        public uint CoreLocalPlayer => _ini.Get("Miscellaneous", "LocalPlayer");
+        public uint CoreLocalPlayer => _ini.Get("Miscellaneous", "LocalPlayer") + 0x8;
         public uint EntityLastVisibleTime => _ini.Get("Miscellaneous", "CPlayer!lastVisibleTime");
         public uint EntityLocalOrigin => _ini.Get("DataMap.CBaseViewModel", "m_localOrigin");
         public uint EntitySignifierName => _ini.Get("RecvTable.DT_BaseEntity", "m_iSignifierName");
@@ -55,6 +55,7 @@ namespace Tanya.Game.Apex.Models
         public uint PlayerViewAngle => _ini.Get("DataMap.C_Player", "m_ammoPoolCapacity") - 0x14;
         public uint FYaw => _ini.Get("DataMap.C_Player", "m_currentFramePlayer.m_ammoPoolCount") - 0x8;
         public uint GameMode => _ini.Get("ConVars", "mp_gamemode") + 0x58;
+        public uint PlayerGlowColor => _ini.Get("RecvTable.DT_HighlightSettings", "m_highlightParams") + 0x18;
         #endregion
     }
 }

@@ -24,6 +24,7 @@
         uint PlayerViewAngle { get; }
         uint FYaw { get;  }
         uint GameMode { get; }
+        uint PlayerGlowColor { get; }
         #endregion
     }
 }

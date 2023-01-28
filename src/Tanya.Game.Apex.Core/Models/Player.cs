@@ -24,6 +24,8 @@ namespace Tanya.Game.Apex.Core.Models
         private readonly Access<Vector> _viewAngle;
         private readonly Access<float> _fYaw;
         private readonly Access<ulong> _gameMode;
+        private readonly Access<Vector> _glowColor;
+
 
         #region Constructors
 
@@ -42,6 +44,7 @@ namespace Tanya.Game.Apex.Core.Models
             _viewAngle = driver.Access(address + offsets.PlayerViewAngle, VectorType.Instance);
             _fYaw = driver.Access(address + offsets.FYaw, FloatType.Instance);
             _gameMode = driver.Access(address + offsets.GameMode, UInt64Type.Instance);
+            _glowColor = driver.Access(address + offsets.PlayerGlowColor, VectorType.Instance);
         }
 
         #endregion
@@ -143,6 +146,12 @@ namespace Tanya.Game.Apex.Core.Models
         [JsonPropertyName("fYaw")]
         public float FYaw => _fYaw.Get();
         
+        [JsonPropertyName("glowColor")]
+	public Vector GlowColor
+	{
+	    get => _glowColor.Get();
+	    set => _glowColor.Set(value);
+	}
         
         #endregion
 
@@ -162,6 +171,7 @@ namespace Tanya.Game.Apex.Core.Models
             _vecPunchWeaponAngle.Update(frameTime);
             _viewAngle.Update(frameTime);
             _fYaw.Update(frameTime);
+            _glowColor.Update(frameTime);
         }
 
         #endregion
